@@ -1,0 +1,60 @@
+# Dockerignore file for KAI Backend
+
+# Git
+.git
+.gitignore
+
+# Environment files (will be copied separately if needed)
+.env
+.env.local
+.env.*.local
+
+# Documentation
+README.md
+docs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies (will be downloaded during build)
+vendor/
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+kai-backend
+
+# Test files
+*_test.go
+*.test
+
+# Coverage
+*.out
+coverage.txt
+coverage.html
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Logs
+*.log
+logs/
+
+# Docker files (not needed in image)
+Dockerfile
+docker-compose.yml
+.dockerignore
