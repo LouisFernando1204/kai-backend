@@ -940,6 +940,34 @@ const docTemplate = `{
                 }
             }
         },
+        "/status": {
+            "get": {
+                "description": "Get detailed service status including database connectivity, uptime, and system information",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "System"
+                ],
+                "summary": "Get service status",
+                "responses": {
+                    "200": {
+                        "description": "Service status",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "503": {
+                        "description": "Service unavailable",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/trains": {
             "get": {
                 "description": "Retrieve a list of all trains",
@@ -1959,7 +1987,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8080",
+	Host:             "103.161.185.247:8080",
 	BasePath:         "/api",
 	Schemes:          []string{"http", "https"},
 	Title:            "KAI Backend",

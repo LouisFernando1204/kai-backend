@@ -763,7 +763,7 @@ definitions:
     - class
     - name
     type: object
-host: localhost:8080
+host: 103.161.185.247:8080
 info:
   contact:
     email: fernandolouis55@gmail.com
@@ -1368,6 +1368,26 @@ paths:
       summary: Update station
       tags:
       - Stations
+  /status:
+    get:
+      description: Get detailed service status including database connectivity, uptime,
+        and system information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Service status
+          schema:
+            additionalProperties: true
+            type: object
+        "503":
+          description: Service unavailable
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get service status
+      tags:
+      - System
   /trains:
     get:
       consumes:

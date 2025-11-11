@@ -17,7 +17,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "103.161.185.247:8080",
     "basePath": "/api",
     "paths": {
         "/auth/login": {
@@ -933,6 +933,34 @@
                         "description": "Internal server error",
                         "schema": {
                             "$ref": "#/definitions/dto.Response-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/status": {
+            "get": {
+                "description": "Get detailed service status including database connectivity, uptime, and system information",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "System"
+                ],
+                "summary": "Get service status",
+                "responses": {
+                    "200": {
+                        "description": "Service status",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "503": {
+                        "description": "Service unavailable",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
                         }
                     }
                 }

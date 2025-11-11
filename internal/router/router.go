@@ -34,7 +34,7 @@ func SetupRoutes(
 	// Health check endpoint for Docker
 	app.Get("/health", func(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusOK).JSON(fiber.Map{
-			"status": "healthy",
+			"status":  "healthy",
 			"service": "kai-backend",
 		})
 	})

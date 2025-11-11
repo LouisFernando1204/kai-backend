@@ -12,11 +12,11 @@ import (
 var startTime = time.Now()
 
 // StatusHandler handles status endpoint
-type StatusHandler struct{}
+type statusHandler struct{}
 
 // NewStatusHandler creates a new status handler
-func NewStatusHandler() *StatusHandler {
-	return &StatusHandler{}
+func NewStatusHandler() *statusHandler {
+	return &statusHandler{}
 }
 
 // GetStatus returns comprehensive service status
@@ -27,14 +27,14 @@ func NewStatusHandler() *StatusHandler {
 // @Success 200 {object} map[string]interface{} "Service status"
 // @Failure 503 {object} map[string]interface{} "Service unavailable"
 // @Router /status [get]
-func (h *StatusHandler) GetStatus(c *fiber.Ctx) error {
+func (h *statusHandler) GetStatus(c *fiber.Ctx) error {
 	// Check database connection
 	dbStatus := "disconnected"
 	dbError := ""
-	
+
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	
+
 	client := connection.GetClient()
 	if client != nil {
 		err := client.Ping(ctx, nil)
@@ -47,7 +47,7 @@ func (h *StatusHandler) GetStatus(c *fiber.Ctx) error {
 
 	// Calculate uptime
 	uptime := time.Since(startTime)
-	
+
 	// Get memory stats
 	var memStats runtime.MemStats
 	runtime.ReadMemStats(&memStats)
