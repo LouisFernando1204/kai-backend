@@ -27,9 +27,7 @@ func NewAuthService(userRepo domain.UserRepository, conf *config.Config) domain.
 
 func (s *authService) Register(ctx context.Context, req dto.RegisterRequest) error {
 	existingUser, err := s.userRepository.FindByEmail(ctx, req.Email)
-	if err != nil {
-		return err
-	}
+
 	if existingUser != nil {
 		return errors.New("email already exists")
 	}
