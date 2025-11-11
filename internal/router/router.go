@@ -23,12 +23,24 @@ func SetupRoutes(
 	trainHandler := api.NewTrainHandler(trainService)
 	scheduleHandler := api.NewScheduleHandler(scheduleService)
 	bookingHandler := api.NewBookingHandler(bookingService)
+	statusHandler := api.NewStatusHandler()
 
 	app.Get("/docs/*", swagger.HandlerDefault)
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"message": "Welcome to KAI Backend!"})
 	})
+
+	// Health check endpoint for Docker
+	app.Get("/health", func(c *fiber.Ctx) error {
+		return c.Status(fiber.StatusOK).JSON(fiber.Map{
+			"status": "healthy",
+			"service": "kai-backend",
+		})
+	})
+
+	// Detailed status endpoint for monitoring
+	app.Get("/status", statusHandler.GetStatus)
 
 	api := app.Group("/api")
 

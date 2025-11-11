@@ -9,7 +9,7 @@
 // @license.name MIT
 // @license.url http://opensource.org/licenses/MIT
 
-// @host localhost:8080
+// @host 103.161.185.247:8080
 // @schemes http https
 // @BasePath /api
 

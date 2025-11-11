@@ -38,6 +38,10 @@ func GetCollection(dbName, collectionName string) *mongo.Collection {
 	return Client.Database(dbName).Collection(collectionName)
 }
 
+func GetClient() *mongo.Client {
+	return Client
+}
+
 func DisconnectDatabase() {
 	if Client == nil {
 		log.Fatalf("MongoDB isn't initialized.")
